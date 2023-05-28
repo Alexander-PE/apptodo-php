@@ -1,4 +1,4 @@
-<?php include('agregarTarea.php'); ?>
+<?php include('accionesTareas.php'); ?>
 
 <!doctype html>
 <html lang="en">
