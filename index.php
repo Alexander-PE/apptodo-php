@@ -46,19 +46,29 @@
 
         <ul class="list-group">
           <?php foreach ($registros as $registro) { ?>
-            <li class="list-group-item">
-              <div class="float-start">
-                <input 
-                class="form-check-input" 
-                type="checkbox" 
-                value="" 
-                id="" <?php echo ($registro['completada']) ? 'checked' : ''; ?> >
+            <li class="list-group-item"> 
+              
+                <form class="float-start" action="" method='post'>
+                  <input type="hidden" name='id' value="<?php echo $registro['id']; ?>">
+
+                  <input 
+                  class="form-check-input" 
+                  type="checkbox"
+                  name="completada"
+                  value="<?php echo $registro['completada']; ?>" 
+                  id="" 
+                  onChange="this.form.submit()"
+                  <?php echo ($registro['completada']) ? 'checked' : ''; ?> >
+                  
+                </form>
+
+                &nbsp;
 
                 <span class="<?php echo ($registro['completada']) ?'subrayado' : ''; ?>">
-                  <?php echo $registro['tarea']; ?>
+                   <?php echo $registro['tarea']; ?>
                 </span>
-              </div>
-              <h6 class="float-end">
+
+                <h6 class="float-end">
                 <a href="?id=<?php echo $registro['id']; ?>">
                   <span class="badge bg-danger">x</span>
                 </a>
