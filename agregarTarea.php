@@ -1,8 +1,28 @@
-<?php 
+<?php
 
-  echo "Archivo que interactua con la base de datos ";
+try {
+  $conn = new PDO('mysql:host=localhost;dbname=todoapp', 'root', '');
+} catch (PDOException $e) {
+  echo 'error de conexion';
+}
 
-  
+if(isset($_POST['agregar_tarea'])){ // agregar_tarea es el nombre del boton tipo submit
+  $tarea = $_POST['tarea']; // el nombre del input
+  $sql = 'insert into tareas (tarea) value(?)'; // sentencia sql
+  $sentencia = $conn->prepare($sql);
+  $sentencia->execute([$tarea]);
+}
+
+if(isset($_GET['id'])){
+  $id = $_GET['id'];
+  $sql = 'delete from tareas where id=?';
+  $sentencia = $conn->prepare($sql);
+  $sentencia->execute([$id]);
+}
+
+
+$sql = 'SELECT * FROM tareas';
+$registros = $conn->query($sql);
 
 
 ?>
